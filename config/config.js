@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     dialect: "sqlite",
-    storage: ".database/db.development.sqlite"
+    storage: "./database/db.development.sqlite"
   },
   test: {
     dialect: "sqlite",

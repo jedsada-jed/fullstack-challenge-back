@@ -1,19 +1,39 @@
-const db = require('./database/db')
+const Sequelize = require('sequelize');
+const db = require('../database/db')
 
-const Admin = db.define('Admin', {
-  id: DataTypes.INTEGER,
-  firstname: DataTypes.STRING,
-  lastname: DataTypes.STRING,
-  email: {
-    type: DataTypes.STRING,
-    validate: { isEmail: true }
+const Admins = db.define('Admins', {
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
   },
-  password: DataTypes.STRING,
-  salt: DataTypes.STRING,
-  createAt: DataTypes.DATE,
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  salt: {
+    type: Sequelize.STRING
+  },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  }
 })
 
-module.exports = Admin;
+module.exports = Admins;
 
 // class Admin extends Model {
 //   get fullName() {
