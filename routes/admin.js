@@ -5,11 +5,9 @@ const db = require('../database/db');
 const admins = require('../models/admin')
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  admins.findAll()
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-  res.send('respond with a resource');
+router.get('/', async (req, res, next) => {
+  const data = await admins.findAll();
+  res.json(data);
 });
 
 module.exports = router;

@@ -12,7 +12,9 @@ const db = require('./database/db')
 // });
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const adminRouter = require('./routes/admin');
+const productRouter = require('./routes/product/product');
+const categoryRouter = require('./routes/product/category');
 
 const app = express();
 
@@ -27,7 +29,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
+app.use('/product', productRouter);
+app.use('/product/category', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
