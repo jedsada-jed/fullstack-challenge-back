@@ -1,27 +1,34 @@
 'use strict';
+const bcrypt = require('bcrypt');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Admins', [
+    const fakePWD = '123456'
+    const admins = [
       {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'example1@example.com',
-        password: 'klfwflkjwef',
-        salt: 'saultKey',
+        firstName: 'Jed',
+        lastName: 'Ng',
+        email: 'jed@mail.com',
+        password: '',
+        salt: bcrypt.genSaltSync(5),
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        firstName: 'John 2',
-        lastName: 'Doe 2',
-        email: 'example2@example.com',
-        password: 'klfwf22222lkjwef',
-        salt: 'saultKey2',
+        firstName: 'Jedsada',
+        lastName: 'Saengow',
+        email: 'jedsada@mail.com',
+        password: '',
+        salt: bcrypt.genSaltSync(5),
         createdAt: new Date(),
         updatedAt: new Date()
       }
-    ]);
+    ];
+
+    admins.forEach((item) => {
+      item.password = bcrypt.hashSync(fakePWD, item.salt);
+    });
+    return queryInterface.bulkInsert('Admins', admins);
   },
 
   down: (queryInterface, Sequelize) => {

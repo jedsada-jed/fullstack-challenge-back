@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../../database/db')
+const db = require('../database/db')
 
 const Product = db.define('Products', {
   id: {
@@ -7,14 +7,6 @@ const Product = db.define('Products', {
     autoIncrement: true,
     primaryKey: true,
     type: Sequelize.INTEGER
-  },
-  cateId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'ProductCategories',
-      key: 'id'
-    }
   },
   title: {
     type: Sequelize.STRING
@@ -36,8 +28,7 @@ const Product = db.define('Products', {
 });
 
 Product.associate = function (models) {
-  console.log('models', models)
-  Product.belongsTo(models.ProductCategories, { foreignKey: 'cateId', as: 'category' })
+  
 };
 
 module.exports = Product;
