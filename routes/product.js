@@ -14,7 +14,7 @@ router.get('/', checkAuth, async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', checkAuth, async (req, res, next) => {
   try {
     const data = await product.findOne({
       where: {
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', checkAuth, async (req, res, next) => {
   try {
     const { title, description, price } = req.body
     const data = await product.create({
@@ -45,24 +45,24 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', checkAuth, async (req, res, next) => {
   try {
     const { title, description, price } = req.body
-    const data = await product.upsert({
+    await product.upsert({
       id: req.params.id,
       title,
       description,
       price,
       updatedAt: new Date()
     });
-    res.json(data);
+    res.json({ data: true });
   } catch (err) {
     console.log(err);
     res.status(500);
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', checkAuth, async (req, res, next) => {
   try {
     const res = await product.destroy({
       where: {

@@ -2,8 +2,6 @@
 const admins = require('../models/admin')
 const SECRET = process.env.SECRET;
 
-console.log('SECRET', SECRET)
-
 const { Strategy, ExtractJwt } = require("passport-jwt");
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader("authorization"),
