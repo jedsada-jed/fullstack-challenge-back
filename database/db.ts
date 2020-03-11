@@ -1,7 +1,7 @@
-const { Sequelize } = require('sequelize');
-const config = require('../config/config')
+import { Sequelize, DataTypes } from 'sequelize'
+import config from '../config/config'
 
-module.exports = new Sequelize({
+export default new Sequelize({
   dialect: 'sqlite',
   storage: config.development.storage,
 
@@ -11,4 +11,4 @@ module.exports = new Sequelize({
     acquire: 30000,
     idle: 10000
   },
-});
+})

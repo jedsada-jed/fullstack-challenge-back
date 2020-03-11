@@ -1,5 +1,5 @@
-'use strict';
-const bcrypt = require('bcrypt');
+'use strict'
+const bcrypt = require('bcrypt') 
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -23,15 +23,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }
-    ];
+    ]
 
     admins.forEach((item) => {
-      item.password = bcrypt.hashSync(fakePWD, item.salt);
-    });
-    return queryInterface.bulkInsert('Admins', admins);
+      item.password = bcrypt.hashSync(fakePWD, item.salt)
+    })
+    return queryInterface.bulkInsert('Admins', admins)
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Admins', null, {});
+    return queryInterface.bulkDelete('Admins', null, {})
   }
-};
+}
